@@ -1,6 +1,6 @@
 import datetime
 
-from sqlalchemy import MetaData, sql, BigInteger
+from sqlalchemy import MetaData, Integer, text
 from sqlalchemy.orm import DeclarativeBase, Mapped, mapped_column, registry, declared_attr
 
 convention = {
@@ -20,7 +20,7 @@ class BaseModel(DeclarativeBase):
 
     __abstract__ = True
 
-    id: Mapped[int] = mapped_column(BigInteger, autoincrement=True, primary_key=True)
+    id: Mapped[int] = mapped_column(autoincrement=True, primary_key=True)
 
     @classmethod
     @declared_attr
@@ -33,9 +33,9 @@ class TimedBaseModel(BaseModel):
 
     __abstract__ = True
 
-    created_at: Mapped[datetime.datetime] = mapped_column(nullable=False, server_default=sql.func.now())
+    created_at: Mapped[datetime.datetime] = mapped_column(nullable=False, server_default=text("TIMEZONE('utc', NOW())"))
     updated_at: Mapped[datetime.datetime] = mapped_column(
         nullable=False,
-        server_default=sql.func.now(),
-        onupdate=sql.func.now(),
+        server_default=text("TIMEZONE('utc', NOW())"),
+        onupdate=datetime.datetime.utcnow,
     )

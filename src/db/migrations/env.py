@@ -9,7 +9,11 @@ from alembic import context
 
 from src.db import DBConfig
 from src.db.models.base import BaseModel
+
 from src.db.models.user import User
+from src.db.models.schedule import Schedule
+from src.db.models.event import Event
+from src.db.models.follow_entry import FollowEntry
 
 # this is the Alembic Config object, which provides
 # access to the values within the .ini file in use.
