@@ -1,1 +1,1 @@
-from .config import DBConfig
+from .config import DbConfig
