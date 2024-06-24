@@ -25,4 +25,4 @@ class Event(TimedBaseModel):
     start_time: Mapped[time] = mapped_column(nullable=False)
     end_time: Mapped[time] = mapped_column(nullable=False)
 
-    schedule: Mapped["Schedule"] = relationship(back_populates="event")
+    schedule: Mapped["Schedule"] = relationship(back_populates="events")
