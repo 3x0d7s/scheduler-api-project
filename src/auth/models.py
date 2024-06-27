@@ -4,8 +4,7 @@ from fastapi_users_db_sqlalchemy import SQLAlchemyBaseUserTable
 from sqlalchemy import String
 from sqlalchemy.orm import mapped_column, Mapped, relationship
 
-from src.db.models import TimedBaseModel
-from src.db.models.follow_entry import FollowerAssociation
+from src.models import TimedBaseModel
 
 
 class User(SQLAlchemyBaseUserTable[int], TimedBaseModel):
@@ -14,11 +13,10 @@ class User(SQLAlchemyBaseUserTable[int], TimedBaseModel):
 
     schedules:      Mapped[list["Schedule"]] = relationship(back_populates="creator")
 
-    follow_entries: Mapped[List["FollowEntry"]] = relationship(
+    subscriptions: Mapped[List["Subscription"]] = relationship(
         secondary="follower_association", back_populates="follower"
     )
 
-    follower_associations: Mapped[List["FollowerAssociation"]] = relationship(
+    subscriber_associations: Mapped[List["SubscriberAssociation"]] = relationship(
         back_populates="follower"
     )
-

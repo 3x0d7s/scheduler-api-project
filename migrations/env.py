@@ -7,13 +7,16 @@ from sqlalchemy.ext.asyncio import async_engine_from_config
 
 from alembic import context
 
-from src.db.config import DbConfig
-from src.db.models.base import BaseModel
+import os, sys
+sys.path.append(os.path.join(sys.path[0], 'src'))
 
-from src.db.models.user import User
-from src.db.models.schedule import Schedule
-from src.db.models.event import Event
-from src.db.models.follow_entry import FollowEntry
+from src.config import DbConfig
+from src.models import BaseModel
+
+from src.auth.models import User
+from src.schedules.models import Schedule
+from src.events.models import Event
+from src.subscriptions.models import Subscription
 
 # this is the Alembic Config object, which provides
 # access to the values within the .ini file in use.
