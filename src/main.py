@@ -1,10 +1,8 @@
 from fastapi import FastAPI, Depends
-from fastapi_users import FastAPIUsers
 
 from src.auth.config import auth_backend, fastapi_users
-from src.auth.manager import get_user_manager
-from src.auth.schemas import UserRead, UserCreate
 from src.auth.models import User
+from src.auth.schemas import UserRead, UserCreate
 
 app = FastAPI(
     title="Scheduler API"
