@@ -41,19 +41,19 @@ class Subscription(TimedBaseModel):
     subscriber_id: Mapped[int] = mapped_column(ForeignKey("user.id"), nullable=False, primary_key=True, unique=True)
     schedule_id: Mapped[int] = mapped_column(ForeignKey("schedule.id"), nullable=False, primary_key=True, unique=True)
 
-    follower: Mapped[List["User"]] = relationship(
+    subscriber: Mapped[List["User"]] = relationship(
         secondary="subscriber_association", back_populates="subscriptions"
     )
 
-    follower_associations: Mapped[List["SubscriberAssociation"]] = relationship(
+    subscriber_associations: Mapped[List["SubscriberAssociation"]] = relationship(
         back_populates="subscription"
     )
 
-    followed: Mapped[List["Schedule"]] = relationship(
+    schedule: Mapped[List["Schedule"]] = relationship(
         secondary="schedule_association", back_populates="subscriptions"
     )
 
-    followed_associations: Mapped[List["ScheduleAssociation"]] = relationship(
+    schedule_associations: Mapped[List["ScheduleAssociation"]] = relationship(
         back_populates="subscription"
     )
 

@@ -1,20 +1,10 @@
-import enum
 from datetime import time
 
 from sqlalchemy import ForeignKey
 from sqlalchemy.orm import Mapped, mapped_column, relationship
 
+from src.events.schemas import DayOfWeek
 from src.models import TimedBaseModel
-
-
-class DayOfWeek(enum.Enum):
-    MONDAY = "monday"
-    TUESDAY = "tuesday"
-    WEDNESDAY = "wednesday"
-    THURSDAY = "thursday"
-    FRIDAY = "friday"
-    SATURDAY = "saturday"
-    SUNDAY = "sunday"
 
 
 class Event(TimedBaseModel):
