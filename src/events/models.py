@@ -5,6 +5,7 @@ from sqlalchemy.orm import Mapped, mapped_column, relationship
 
 from src.events.schemas import DayOfWeek
 from src.models import TimedBaseModel
+from src.schedules.models import Schedule
 
 
 class Event(TimedBaseModel):

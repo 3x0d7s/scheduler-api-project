@@ -30,4 +30,4 @@ class EventRead(EventCreate):
 
 
 class EventOfScheduleRead(EventRead):
-    schedule: ScheduleRead
+    schedule: 'ScheduleRead'

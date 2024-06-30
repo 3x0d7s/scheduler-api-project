@@ -3,6 +3,8 @@ from fastapi import FastAPI, Depends
 from src.auth.config import auth_backend, fastapi_users
 from src.auth.models import User
 from src.auth.schemas import UserRead, UserCreate
+from src.schedules.routers import router as schedules_router
+
 
 app = FastAPI(
     title="Scheduler API"
@@ -19,6 +21,8 @@ app.include_router(
     prefix="/auth",
     tags=["auth"],
 )
+
+app.include_router(schedules_router)
 
 current_user = fastapi_users.current_user()
 

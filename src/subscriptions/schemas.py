@@ -1,8 +1,12 @@
-from typing import List
+from typing import List, TYPE_CHECKING
 
 from src.auth.schemas import UserRead
 from src.schedules.schemas import ScheduleRead
 from src.schemas import TimedBaseModel
+
+if TYPE_CHECKING:
+    from src.auth.schemas import UserRead
+    from src.schedules.schemas import ScheduleRead
 
 
 class SubscriptionCreate(TimedBaseModel):
@@ -12,5 +16,5 @@ class SubscriptionCreate(TimedBaseModel):
 
 class SubscriptionRead(SubscriptionCreate):
     id: int
-    subscribers: List[UserRead] = []
-    schedules: List[ScheduleRead] = []
+    subscribers: List['UserRead'] = []
+    schedules: List['ScheduleRead'] = []

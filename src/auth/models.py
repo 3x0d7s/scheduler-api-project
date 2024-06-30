@@ -1,10 +1,13 @@
-from typing import List
+from typing import List, TYPE_CHECKING
 
 from fastapi_users_db_sqlalchemy import SQLAlchemyBaseUserTable
 from sqlalchemy import String
 from sqlalchemy.orm import mapped_column, Mapped, relationship
 
 from src.models import TimedBaseModel
+
+from src.schedules.models import Schedule
+from src.subscriptions.models import SubscriberAssociation, Subscription
 
 
 class User(SQLAlchemyBaseUserTable[int], TimedBaseModel):
@@ -14,9 +17,9 @@ class User(SQLAlchemyBaseUserTable[int], TimedBaseModel):
     schedules:      Mapped[list["Schedule"]] = relationship(back_populates="creator")
 
     subscriptions: Mapped[List["Subscription"]] = relationship(
-        secondary="follower_association", back_populates="follower"
+        secondary="subscriber_association", back_populates="follower"
     )
 
     subscriber_associations: Mapped[List["SubscriberAssociation"]] = relationship(
-        back_populates="follower"
+        back_populates="subscriber"
     )
