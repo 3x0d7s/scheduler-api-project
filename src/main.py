@@ -5,6 +5,10 @@ from src.auth.models import User
 from src.auth.schemas import UserRead, UserCreate
 from src.schedules.routers import router as schedules_router
 
+from src.auth.models import User
+from src.events.models import Event
+from src.subscriptions.models import Subscription
+from src.schedules.models import Schedule
 
 app = FastAPI(
     title="Scheduler API"

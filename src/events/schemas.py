@@ -2,7 +2,8 @@ import enum
 from datetime import time
 from typing import Optional
 
-from src.schedules.schemas import ScheduleRead
+from pydantic import BaseModel
+
 from src.schemas import TimedBaseModel
 
 
@@ -16,7 +17,7 @@ class DayOfWeek(enum.Enum):
     SUNDAY = "sunday"
 
 
-class EventCreate(TimedBaseModel):
+class EventCreate(BaseModel):
     schedule_id: int
     name: str
     description: Optional[str] = None
@@ -25,7 +26,7 @@ class EventCreate(TimedBaseModel):
     end_time: time
 
 
-class EventRead(EventCreate):
+class EventRead(EventCreate, TimedBaseModel):
     id: int
 
 

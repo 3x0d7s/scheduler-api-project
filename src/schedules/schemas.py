@@ -1,12 +1,8 @@
-from typing import Optional, List, TYPE_CHECKING
+from typing import Optional, List
 
 from pydantic import BaseModel
 
 from src.schemas import TimedBaseModel
-
-from src.auth.schemas import UserRead
-from src.events.schemas import EventRead
-from src.subscriptions.schemas import SubscriptionRead
 
 
 class ScheduleCreate(BaseModel):

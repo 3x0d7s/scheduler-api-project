@@ -1,12 +1,9 @@
-from typing import List, TYPE_CHECKING
+from typing import List
 
 from sqlalchemy import ForeignKey
 from sqlalchemy.orm import mapped_column, Mapped, relationship, declared_attr
 
 from src.models import BaseModel, TimedBaseModel
-
-from src.auth.models import User
-from src.schedules.models import Schedule
 
 
 class SubscriberAssociation(BaseModel):

@@ -5,14 +5,13 @@ from sqlalchemy.orm import Mapped, mapped_column, relationship
 
 from src.events.schemas import DayOfWeek
 from src.models import TimedBaseModel
-from src.schedules.models import Schedule
 
 
 class Event(TimedBaseModel):
     schedule_id: Mapped[int] = mapped_column(ForeignKey("schedule.id"))
     name: Mapped[str] = mapped_column(nullable=False)
     description: Mapped[str]
-    day_of_week: Mapped[DayOfWeek] = mapped_column(nullable=False)
+    day_of_week: Mapped["DayOfWeek"] = mapped_column(nullable=False)
     start_time: Mapped[time] = mapped_column(nullable=False)
     end_time: Mapped[time] = mapped_column(nullable=False)
 

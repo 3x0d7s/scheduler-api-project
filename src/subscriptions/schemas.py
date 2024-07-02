@@ -1,12 +1,6 @@
-from typing import List, TYPE_CHECKING
+from typing import List
 
-from src.auth.schemas import UserRead
-from src.schedules.schemas import ScheduleRead
 from src.schemas import TimedBaseModel
-
-if TYPE_CHECKING:
-    from src.auth.schemas import UserRead
-    from src.schedules.schemas import ScheduleRead
 
 
 class SubscriptionCreate(TimedBaseModel):
