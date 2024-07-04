@@ -11,8 +11,8 @@ class Schedule(TimedBaseModel):
     name:           Mapped[str] = mapped_column(nullable=False)
     description:    Mapped[str]
 
-    creator:        Mapped["User"] = relationship(back_populates="schedules")
-    events:         Mapped[List["Event"]] = relationship(back_populates="schedule")
+    creator:        Mapped["User"] = relationship(back_populates="schedules", lazy="selectin")
+    events:         Mapped[List["Event"]] = relationship(back_populates="schedule", lazy="selectin")
 
     subscriptions: Mapped[List["Subscription"]] = relationship(
         secondary="schedule_association", back_populates="schedule"

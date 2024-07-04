@@ -11,7 +11,7 @@ class User(SQLAlchemyBaseUserTable[int], TimedBaseModel):
     name: Mapped[str] = mapped_column(String(50), nullable=False)
     surname: Mapped[str] = mapped_column(String(50), nullable=False)
 
-    schedules:      Mapped[list["Schedule"]] = relationship(back_populates="creator")
+    schedules:      Mapped[list["Schedule"]] = relationship(back_populates="creator", lazy="selectin")
 
     subscriptions: Mapped[List["Subscription"]] = relationship(
         secondary="subscriber_association", back_populates="subscriber"

@@ -2,21 +2,28 @@ from typing import Optional, List
 
 from pydantic import BaseModel
 
-from src.schemas import TimedBaseModel
+from src.auth.schemas import UserRead
+from src.schemas import TimedBaseScheme, BaseScheme
 
 
-class ScheduleCreate(BaseModel):
+class ScheduleBase(BaseModel):
     name: str
-    creator_id: int
     description: Optional[str] = None
 
 
-class ScheduleRead(ScheduleCreate, TimedBaseModel):
+class ScheduleCreate(ScheduleBase):
+    creator_id: int
+
+
+class ScheduleRead(ScheduleBase, TimedBaseScheme):
     id: int
 
+
+class ScheduleWithCreatorRead(ScheduleRead):
     creator: 'UserRead'
 
 
-class ScheduleWithEventsRead(ScheduleRead):
+class ScheduleWithEventsAndCreatorRead(ScheduleWithCreatorRead):
     events: List['EventRead'] = []
     subscriptions: List['SubscriptionRead'] = []
+
