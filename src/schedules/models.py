@@ -1,4 +1,4 @@
-from typing import List, TYPE_CHECKING
+from typing import List
 
 from sqlalchemy import ForeignKey
 from sqlalchemy.orm import Mapped, mapped_column, relationship
@@ -14,10 +14,10 @@ class Schedule(TimedBaseModel):
     creator:        Mapped["User"] = relationship(back_populates="schedules", lazy="selectin")
     events:         Mapped[List["Event"]] = relationship(back_populates="schedule", lazy="selectin")
 
-    subscriptions: Mapped[List["Subscription"]] = relationship(
-        secondary="schedule_association", back_populates="schedule"
+    subscribers: Mapped[List["User"]] = relationship(
+        secondary="subscription", back_populates="subscriptions", lazy="selectin"
     )
 
-    schedule_associations: Mapped[List["ScheduleAssociation"]] = relationship(
+    subscription_associations: Mapped[List["Subscription"]] = relationship(
         back_populates="schedule"
     )

@@ -5,8 +5,9 @@ from pydantic import BaseModel
 
 
 class BaseScheme(BaseModel):
+    # 'orm_mode' has been renamed to 'from_attributes'
     class Config:
-        orm_mode = True
+        from_attributes = True
 
 
 class TimedBaseScheme(BaseScheme):

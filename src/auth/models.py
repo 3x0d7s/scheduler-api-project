@@ -1,4 +1,4 @@
-from typing import List, TYPE_CHECKING
+from typing import List
 
 from fastapi_users_db_sqlalchemy import SQLAlchemyBaseUserTable
 from sqlalchemy import String
@@ -11,12 +11,13 @@ class User(SQLAlchemyBaseUserTable[int], TimedBaseModel):
     name: Mapped[str] = mapped_column(String(50), nullable=False)
     surname: Mapped[str] = mapped_column(String(50), nullable=False)
 
-    schedules:      Mapped[list["Schedule"]] = relationship(back_populates="creator", lazy="selectin")
+    schedules:      Mapped[List["Schedule"]] = relationship(back_populates="creator", lazy="selectin")
 
-    subscriptions: Mapped[List["Subscription"]] = relationship(
-        secondary="subscriber_association", back_populates="subscriber"
+    subscriptions: Mapped[List["Schedule"]] = relationship(
+        secondary="subscription", back_populates="subscribers", lazy="selectin"
     )
 
-    subscriber_associations: Mapped[List["SubscriberAssociation"]] = relationship(
+    subscription_associations: Mapped[List["Subscription"]] = relationship(
         back_populates="subscriber"
     )
+
